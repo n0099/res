@@ -1,7 +1,11 @@
 import _ from 'lodash';
 import streamSaver from 'streamsaver';
 import { createSHA1 } from 'hash-wasm';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+// @ts-ignore
 import { Archive } from 'libarchive.js/main.js';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+// @ts-ignore
 import { CompressedFile } from 'libarchive.js/src/compressed-file';
 import type { DownloadStats, DownloadTask } from './index.d';
 import { gaDownloadStreamSaverError, gaDownloadStreamSaverFinish, gaDownloadStreamSaverStart } from './gtag';
@@ -107,14 +111,13 @@ export async function extractZip(fileHandle: FileSystemFileHandle): Promise<void
     let unzipDir: FileSystemDirectoryHandle | null = null;
     try {
         unzipDir = await showDirectoryPicker();
-        if(await unzipDir.queryPermission({ mode: 'readwrite' }) !== 'granted'
-            && await unzipDir.requestPermission({ mode: 'readwrite' }) !== 'granted')
-            throw Error('user haven\'t granted dir write permission');
+        if (await unzipDir.queryPermission({ mode: 'readwrite' }) !== 'granted'
+            && await unzipDir.requestPermission({ mode: 'readwrite' }) !== 'granted') throw Error('user haven\'t granted dir write permission');
     } catch (e: unknown) {
         console.error(e);
         return;
     }
-    Archive.init({ workerUrl: process.env.PUBLIC_URL + '/libarchive.worker-bundle.js' });
+    Archive.init({ workerUrl: `${process.env.PUBLIC_URL}/libarchive.worker-bundle.js` });
     console.log(Archive);
     const file = await fileHandle.getFile();
     console.log(file);
@@ -127,7 +130,7 @@ export async function extractZip(fileHandle: FileSystemFileHandle): Promise<void
             const fileHandle = await parentDirHandle.getFileHandle(fileOrFiles.name.replaceAll('*', '_'), { create: true });
             const stream = await fileHandle.createWritable();
             console.time('extract');
-            const extractedFile = await fileOrFiles.extract()
+            const extractedFile = await fileOrFiles.extract();
             console.timeEnd('extract');
             console.time('write');
             await stream.write(extractedFile);
@@ -146,7 +149,7 @@ export async function extractZip(fileHandle: FileSystemFileHandle): Promise<void
     console.log(unzipDir);
     _.map(files, (i, k) => {
         if (unzipDir === null) return;
-        recusriveExtract(i, k, unzipDir)
+        recusriveExtract(i, k, unzipDir);
     });
 }
 

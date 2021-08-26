@@ -1,7 +1,7 @@
 import { Settings, DateTime as luxon } from 'luxon';
 
 Settings.defaultLocale = 'zh-CN';
-Settings.defaultZoneName = 'Asia/Shanghai';
+Settings.defaultZone = 'Asia/Shanghai';
 Settings.throwOnInvalid = true;
 
 export const futureSecondsToRelative = (seconds: number): string => luxon.now().plus({ seconds }).toRelative({ round: false }) ?? '';
