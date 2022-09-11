@@ -87,10 +87,10 @@ export default React.memo(({ className, file, parentPath }:
                 </Grid>
             </Box>
             <Grid item xs={12}>
-                <Button className={style.downloadButton} startIcon={<PlayForWorkRounded />}
+                {/* <Button className={style.downloadButton} startIcon={<PlayForWorkRounded />}
                     onClick={() => {
                         dispatch(addDownloadTask({ info: file, path: parentPath + file.name }));
-                    }} variant="contained" color="secondary" size="large">网页内下载</Button>
+                    }} variant="contained" color="secondary" size="large">网页内下载</Button> */}
                 <Button className={style.downloadButton} startIcon={<GetAppRounded />}
                     onClick={async () => {
                         window.open(await getOneDriveDownloadUrl(parentPath + file.name));

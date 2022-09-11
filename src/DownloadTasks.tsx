@@ -1,5 +1,5 @@
-import { Button, Theme } from '@material-ui/core';
-import { CircularProgress, Drawer, Fab, Grid, List, ListItem, Toolbar, createStyles, makeStyles } from '@material-ui/core';
+import type { Theme } from '@material-ui/core';
+import { Button, CircularProgress, Drawer, Fab, Grid, List, ListItem, Toolbar, createStyles, makeStyles } from '@material-ui/core';
 import { ArrowForwardIosRounded, ExpandLessRounded, ExpandMoreRounded, InsertDriveFileRounded, MoveToInboxRounded } from '@material-ui/icons';
 import _ from 'lodash';
 import React, { Suspense, useEffect, useState } from 'react';

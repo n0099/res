@@ -237,7 +237,7 @@ export default function MainView(): JSX.Element {
         <PathBreadcrumbs path={fullPath} />
         {/* <PathFullTiers path={fullPath} /> */}
         {isLoading && <LinearProgress color="secondary" />}
-        <DownloadTasks />
+        {/* <DownloadTasks /> */}
         <Container>
             {apiError.pathInfo !== undefined && <Typography variant="h3" align="center">{apiError.pathInfo.error}</Typography>}
             {pathInfo.type === '404' && <Typography variant="h1" align="center">404</Typography>}
