@@ -87,7 +87,7 @@ export default React.memo(({ path }: { path: string }): JSX.Element => {
                                             <AlignedIcon><HomeRounded /></AlignedIcon>
                                         </Link>
                                         {<Link className={style.contrastColor} component={RouterLink} to="/">
-                                            <span> 四叶重工资源站</span>
+                                            <span> {process.env.REACT_APP_SITE_TITLE}</span>
                                         </Link>}
                                     </span>
                                     {_.map(fullPathTiers, (i, k) =>

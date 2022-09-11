@@ -2,14 +2,12 @@
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
-            REACT_APP_OD_URL_PREFIX: string,
             REACT_APP_API_URL_PREFIX: string,
+            REACT_APP_SITE_TITLE: string,
             REACT_APP_ROOT_URL: string,
             REACT_APP_STREAMSAVER_MITM_URL: string,
-            REACT_APP_PUBLIC_RELATIVE_URL: string,
             REACT_APP_GA_MEASUREMENT_ID: string,
-            REACT_APP_RECAPTCHA_V3_KEY: string,
-            REACT_APP_ADSENSE_CLIENT: string
+            REACT_APP_RECAPTCHA_V3_KEY: string
         }
     }
 }

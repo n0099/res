@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 const getRequestDecorator = async <T extends ApiError>(endpoint: string, queryString: Record<string, unknown>): Promise<ApiError | T> => {
     try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL_PREFIX}${endpoint}?${qs.stringify(queryString)}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL_PREFIX}/${endpoint}?${qs.stringify(queryString)}`);
         if (!res.ok) throw Error(`API ${endpoint} 返回 HTTP ${res.status} 错误`);
         return await res.json() as T;
     } catch (e: unknown) {
@@ -23,7 +23,7 @@ export const getOneDriveDownloadUrl = async (path: string): Promise<string> =>
     new Promise<string>(reslove => {
         grecaptcha.ready(() => {
             void grecaptcha.execute(process.env.REACT_APP_RECAPTCHA_V3_KEY, { action: 'getOneDriveDownloadUrl' })
-                .then(token => { reslove(`${process.env.REACT_APP_OD_URL_PREFIX}${path}?${qs.stringify({ token, version: 'v3' })}`) });
+                .then(token => { reslove(`${process.env.REACT_APP_API_URL_PREFIX}/verify${path}?${qs.stringify({ token, version: 'v3' })}`) });
         });
     });
 

@@ -8,10 +8,13 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import Notifier from './Notifier';
 
+// https://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-string/14480366#14480366
+const getSubStrPosition = (haystack: string, needle: string, index: number) => haystack.split(needle, index).join(needle).length;
+
 function App() {
     return (
         <Provider store={store}>
-            <BrowserRouter basename={process.env.REACT_APP_PUBLIC_RELATIVE_URL}>
+            <BrowserRouter basename={process.env.PUBLIC_URL.substr(getSubStrPosition(process.env.PUBLIC_URL, '/', 3))}>
                 <Route path="/">
                     <SnackbarProvider>
                         <CssBaseline />
